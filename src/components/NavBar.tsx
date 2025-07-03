@@ -10,6 +10,7 @@ export default function NavBar() {
     null
   );
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,11 +33,12 @@ export default function NavBar() {
     <header
       className={`sticky top-0 z-50 border-b backdrop-blur-sm transition-all duration-300 ${
         scrollDirection === "down"
-          ? "opacity-0 translate-y-[-100%]"
+          ? "opacity-0 -translate-y-full"
           : "opacity-100 bg-white/80"
       }`}
     >
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        {/* Logo */}
         <div className="flex items-center gap-2">
           <Image
             src="/logo.png"
@@ -46,12 +48,14 @@ export default function NavBar() {
             className="w-full h-auto rounded-2xl"
           />
         </div>
+
+        {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-6">
           <Link
             href="/"
             className="text-gray-600 hover:text-rose-500 transition-colors font-bold"
           >
-            Inicio
+            Início
           </Link>
           <Link
             href="/about"
@@ -59,12 +63,6 @@ export default function NavBar() {
           >
             Sobre
           </Link>
-          {/* <Link
-            href="/impact"
-            className="text-gray-600 hover:text-rose-500 transition-colors font-bold"
-          >
-            Nossos projetos
-          </Link> */}
           <Link
             href="/contact"
             className="text-gray-600 hover:text-rose-500 transition-colors font-bold"
@@ -79,7 +77,53 @@ export default function NavBar() {
           </Link>
           <MenuDropdown />
         </nav>
+
+        {/* Mobile menu button */}
+        <button
+          className="md:hidden text-gray-700 text-2xl focus:outline-none"
+          onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+        >
+          {isMobileMenuOpen ? "✕" : "☰"}
+        </button>
       </div>
+
+      {/* Mobile menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-white/90 border-t px-4 pb-4">
+          <Link
+            href="/"
+            className="block py-2 text-gray-700 font-bold hover:text-rose-500"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Início
+          </Link>
+          <Link
+            href="/about"
+            className="block py-2 text-gray-700 font-bold hover:text-rose-500"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Sobre
+          </Link>
+          <Link
+            href="/contact"
+            className="block py-2 text-gray-700 font-bold hover:text-rose-500"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Contato
+          </Link>
+          <Link
+            href="/parters"
+            className="block py-2 text-gray-700 font-bold hover:text-rose-500"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Parceiros
+          </Link>
+          {/* Opcional: Dropdown no mobile */}
+          <div className="pt-2">
+            <MenuDropdown />
+          </div>
+        </div>
+      )}
     </header>
   );
 }

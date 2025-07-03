@@ -14,7 +14,7 @@ import {
 import { MapPin, Search, Phone, Mail } from "lucide-react";
 import dynamic from "next/dynamic";
 import { OngLocation } from "../types/ongLocation";
-import axios from "axios";
+import API from "@/services/api";
 
 // Importação dinâmica do mapa
 const MapCard = dynamic(() => import("../map/components/index"), {
@@ -41,9 +41,7 @@ export default function MapaPage() {
   useEffect(() => {
     const fetchOngs = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:5180/api/onglocation"
-        );
+        const response = await API.get("/api/onglocation");
         console.log("ONGs recebidas:", response.data);
         setOngs(response.data ?? []);
       } catch (error) {

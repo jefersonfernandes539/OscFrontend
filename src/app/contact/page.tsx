@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import emailjs from "emailjs-com";
 
@@ -11,17 +10,17 @@ import { Card, CardContent } from "@/ui/card";
 import { Input } from "@/ui/input";
 import { Label } from "@/ui/label";
 import { Textarea } from "@/ui/textarea";
+import SuccessModal from "@/components/SuccessModal";
 
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    subject: "",
+    title: "",
     message: "",
   });
-
-  const router = useRouter();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -36,19 +35,20 @@ export default function ContactPage() {
 
     try {
       await emailjs.send(
-        "YOUR_SERVICE_ID", // ← substitua aqui
-        "ee", // ← substitua aqui
+        "service_jdf0c4r", // ← Seu Service ID
+        "template_t0ss9ql", // ← Seu Template ID
         {
-          from_name: formData.name,
-          reply_to: formData.email,
-          subject: formData.subject,
+          name: formData.name,
+          email: formData.email,
+          title: formData.title,
           message: formData.message,
+          time: new Date().toLocaleString("pt-BR"),
         },
-        "YOUR_PUBLIC_KEY" // ← substitua aqui
+        "alaTW3f-o4EDgXFTQ" // ← Sua Public Key
       );
 
-      setFormData({ name: "", email: "", subject: "", message: "" });
-      router.push("/info");
+      setFormData({ name: "", email: "", title: "", message: "" });
+      setShowSuccessModal(true);
     } catch (err) {
       console.error("Erro ao enviar email:", err);
       alert("Erro ao enviar mensagem. Tente novamente.");
@@ -129,6 +129,10 @@ export default function ContactPage() {
               );
             })}
           </motion.div>
+          <SuccessModal
+            show={showSuccessModal}
+            onClose={() => setShowSuccessModal(false)}
+          />
 
           <motion.div
             initial={{ opacity: 0, x: 50 }}
@@ -167,13 +171,13 @@ export default function ContactPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="subject">Assunto</Label>
+                    <Label htmlFor="title">Assunto</Label>
                     <Input
-                      id="subject"
-                      name="subject"
+                      id="title"
+                      name="title"
                       placeholder="Assunto da mensagem"
                       required
-                      value={formData.subject}
+                      value={formData.title}
                       onChange={handleChange}
                     />
                   </div>

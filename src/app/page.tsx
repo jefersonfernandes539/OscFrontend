@@ -8,6 +8,7 @@ import { Button } from "@/ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/ui/card";
 import { MapPin, Users, Search, Phone } from "lucide-react";
 import Link from "next/link";
+import CountUp from "react-countup";
 
 export default function HomePage() {
   return (
@@ -20,27 +21,33 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-4xl font-bold text-[#ffc449]  mb-2">20+</div>
+              <div className="text-4xl font-bold text-[#ffc449] mb-2">
+                <CountUp end={20} duration={3} suffix="+" />
+              </div>
               <div className="text-gray-600 font-semibold">
                 Aberturas de CNPJ
               </div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-[#ff605f]  mb-2">61+</div>
+              <div className="text-4xl font-bold text-[#ff605f] mb-2">
+                <CountUp end={61} duration={3} suffix="+" />
+              </div>
               <div className="text-gray-600 font-semibold">
                 Bairros atendidos
               </div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-[#ff605f]  mb-2">
-                196+
+              <div className="text-4xl font-bold text-[#ff605f] mb-2">
+                <CountUp end={196} duration={3} suffix="+" />
               </div>
               <div className="text-gray-600 font-semibold">
                 Ações realizadas
               </div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-[#ffc449]  mb-2">56+</div>
+              <div className="text-4xl font-bold text-[#ffc449] mb-2">
+                <CountUp end={56} duration={3} suffix="+" />
+              </div>
               <div className="text-gray-600 font-semibold">
                 Entidades capacitadas, orientadas e acompanhadas
               </div>
@@ -51,9 +58,18 @@ export default function HomePage() {
 
       <SectionScroll />
 
-      <div className="py-20">
-        <MissionVisionValues />
-      </div>
+      <section className="relative w-full h-screen overflow-hidden p-0 m-0 bg-[#e6e8e6] py-16">
+        <div
+          className="absolute inset-0 w-full h-full bg-cover bg-center z-0"
+          style={{
+            backgroundImage: "url('/seção1.png')",
+          }}
+        />
+
+        <div className="relative z-10 w-full h-full">
+          <MissionVisionValues />
+        </div>
+      </section>
 
       <section id="sobre" className="py-20 px-4 bg-gray-100">
         <div className="container mx-auto max-w-6xl">
