@@ -2,8 +2,6 @@
 import { Card, CardContent } from "@/ui/card";
 import { Quote } from "lucide-react";
 import Image from "next/image";
-
-import { ImageGalleryModal } from "./components/image-gallery-modal";
 import { motion, useScroll } from "motion/react";
 import { History } from "./components/history";
 import ContextValue from "./components/context-values";
