@@ -26,14 +26,14 @@ export default function SobrePage() {
         }}
       />{" "}
       <div className="min-h-screen bg-background">
-        <section className="relative py-20 lg:py-32 overflow-hidden bg-gray-100 rounded-b-4xl shadow-sm">
+        <section className="text-white relative py-20 lg:py-32 overflow-hidden bg-gradient-to-r from-[#ffc449] to-[#ff605f] rounded-b-4xl shadow-sm">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5" />
           <div className="container relative px-4 md:px-6">
             <div className="max-w-3xl mx-auto text-center space-y-6">
-              <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-[#ff605f]">
+              <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
                 Nossa História
               </h1>
-              <p className="text-xl text-muted-foreground leading-relaxed">
+              <p className="text-xl leading-relaxed text-white">
                 Conheça a jornada que nos trouxe até aqui e a visão que nos move
                 para o futuro
               </p>
@@ -106,7 +106,7 @@ export default function SobrePage() {
           </div>
         </section>
         <ContextValue />
-        <ImageGalleryModal />
+        {/* <ImageGalleryModal /> */}
       </div>
     </>
   );

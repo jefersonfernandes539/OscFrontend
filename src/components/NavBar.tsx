@@ -64,6 +64,12 @@ export default function NavBar() {
             Sobre
           </Link>
           <Link
+            href="/acting"
+            className="text-gray-600 hover:text-rose-500 transition-colors font-bold"
+          >
+            Nossa atuação
+          </Link>
+          <Link
             href="/contact"
             className="text-gray-600 hover:text-rose-500 transition-colors font-bold"
           >
@@ -78,7 +84,6 @@ export default function NavBar() {
           <MenuDropdown />
         </nav>
 
-        {/* Mobile menu button */}
         <button
           className="md:hidden text-gray-700 text-2xl focus:outline-none"
           onClick={() => setIsMobileMenuOpen((prev) => !prev)}
@@ -87,7 +92,6 @@ export default function NavBar() {
         </button>
       </div>
 
-      {/* Mobile menu */}
       {isMobileMenuOpen && (
         <div className="md:hidden bg-white/90 border-t px-4 pb-4">
           <Link
@@ -105,6 +109,13 @@ export default function NavBar() {
             Sobre
           </Link>
           <Link
+            href="/acting"
+            className="block py-2 text-gray-700 font-bold hover:text-rose-500"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Nossa atuação
+          </Link>
+          <Link
             href="/contact"
             className="block py-2 text-gray-700 font-bold hover:text-rose-500"
             onClick={() => setIsMobileMenuOpen(false)}
@@ -118,7 +129,6 @@ export default function NavBar() {
           >
             Parceiros
           </Link>
-          {/* Opcional: Dropdown no mobile */}
           <div className="pt-2">
             <MenuDropdown />
           </div>
