@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📍 Cartografia da Cultura: OSCs e Iniciativas Culturais de Fortaleza
 
-## Getting Started
+O **Cartografia da Cultura** é uma iniciativa que tem como objetivo **mapear, documentar e dar visibilidade** a mais de 100 organizações e coletivos culturais de Fortaleza.  
+A proposta busca fortalecer redes de colaboração, valorizar metodologias e práticas culturais e reunir essas experiências em uma **plataforma digital interativa** e em um **livro acessível**, ambos construídos de forma democrática e inclusiva.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🎯 Objetivos do Projeto
+- Mapear organizações e coletivos culturais de Fortaleza.  
+- Documentar metodologias, práticas e desafios do setor cultural.  
+- Promover redes de colaboração entre iniciativas locais.  
+- Disponibilizar as informações em uma plataforma digital interativa.  
+- Publicar um livro acessível com os resultados do mapeamento.  
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📝 Como participar
+Para contribuir com o mapeamento, pedimos que sua organização/coletivo preencha o formulário abaixo:  
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🔗 [Formulário de Participação](https://docs.google.com/forms/d/e/1FAIpQLSeKn22U10nl5BpjBBOAn-cipBQBiL3f3JdbSXYKOKTxltlz_Q/viewform?usp=sharing&ouid=108580048666176476182)
 
-## Learn More
+As informações enviadas serão tratadas com **cuidado e respeito**, e contribuirão para fortalecer o ecossistema cultural de Fortaleza.  
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠️ Tecnologias utilizadas
+- **Frontend:** React.js + Next.js  
+- **Backend:** C# .NET + Entity Framework  
+- **Integração:** API REST + Google Forms  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 📌 Patrocínio e Apoio
+Este projeto é realizado com **patrocínio da Secretaria da Cultura do Estado do Ceará (Secult-CE)** e do **Governo do Estado do Ceará**.  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🤝 Equipe
+**Equipe Cartografia da Cultura**  
+Construindo redes culturais de forma colaborativa e inclusiva.
