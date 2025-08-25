@@ -14,6 +14,11 @@ A proposta busca fortalecer redes de colaboração, valorizar metodologias e pr�
 
 ---
 
+## 🌐 Acesse a plataforma
+👉 [Cartografia da Cultura - Aplicação Web](https://redemobilize.up.railway.app/)  
+
+---
+
 ## 📝 Como participar
 Para contribuir com o mapeamento, pedimos que sua organização/coletivo preencha o formulário abaixo:  
 
