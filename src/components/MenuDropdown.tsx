@@ -20,7 +20,7 @@ export default function MenuDropdown() {
 
       <DropdownMenuContent className="w-56">
         <DropdownMenuItem asChild>
-          <Link href="/" className="font-semibold">
+          <Link href="/aboutMap" className="font-semibold">
             Sobre
           </Link>
         </DropdownMenuItem>

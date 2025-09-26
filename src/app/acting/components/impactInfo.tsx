@@ -358,7 +358,6 @@ export function ImpactInfo() {
 
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-7xl mx-auto space-y-16">
-          {/* Estatísticas Gerais */}
           <section>
             <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
               Números do Impacto
