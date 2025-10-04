@@ -17,11 +17,12 @@ import {
   Shield,
 } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function AboutMap() {
+  const router = useRouter();
   return (
     <div className="w-full">
-      {/* Hero Section */}
       <section className="relative w-full h-[90vh] md:h-[95vh] lg:h-[100vh] flex flex-col items-center justify-start">
         <div
           className="absolute inset-0 bg-cover bg-center filter grayscale brightness-110 contrast-125 z-0"
@@ -35,7 +36,7 @@ export default function AboutMap() {
         />
 
         <div className="relative z-20 flex flex-col items-center mt-4 px-4 text-center">
-          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#ffc449] drop-shadow-lg mb-4">
+          <h2 className="text-2xl md:text-2xl lg:text-3xl font-bold text-[#ff6467] drop-shadow-lg mb-4">
             Conectando as iniciativas culturais de Fortaleza
           </h2>
           <h2 className="text-lg md:text-xl lg:text-2xl text-black drop-shadow-lg mb-6 leading-relaxed">
@@ -43,7 +44,10 @@ export default function AboutMap() {
             valoriza e fortalece a identidade da nossa cidade!
           </h2>
 
-          <Button className="bg-red-400 hover:bg-red-800 font-bold w-full sm:w-auto sm:px-10 md:px-14 py-3 md:py-4 text-lg sm:text-2xl md:text-3xl lg:text-4xl rounded-b-sm mt-4">
+          <Button
+            onClick={() => router.push("/map")}
+            className="bg-red-400 hover:bg-red-800 font-bold w-full sm:w-auto sm:px-10 md:px-14 py-3 md:py-4 text-lg sm:text-2xl md:text-3xl lg:text-4xl rounded-b-sm mt-4"
+          >
             Saiba mais
           </Button>
         </div>
@@ -107,8 +111,8 @@ export default function AboutMap() {
               <Image
                 src="/cdm.jpg"
                 alt="Imagem do projeto"
-                width={350}
-                height={300}
+                width={520}
+                height={340}
                 className="h-full w-auto object-cover rounded-lg shadow-lg"
               />
             </div>
@@ -116,7 +120,6 @@ export default function AboutMap() {
         </div>
       </div>
 
-      {/* Por que entrar */}
       <section className="min-h-screen bg-background p-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12 px-4">
@@ -129,7 +132,6 @@ export default function AboutMap() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-center">
-            {/* Cards */}
             {[
               {
                 icon: Network,
@@ -181,7 +183,6 @@ export default function AboutMap() {
         </div>
       </section>
 
-      {/* Acessibilidade */}
       <section className="relative w-full flex flex-col items-center justify-start py-12">
         <div
           className="absolute inset-0 bg-cover bg-center filter grayscale brightness-110 contrast-125 z-0"
@@ -257,7 +258,7 @@ export default function AboutMap() {
         />
 
         <div className="relative z-20 px-4 text-center max-w-3xl">
-          <h2 className="text-black text-base md:text-xl lg:text-2xl leading-relaxed text-center">
+          <h2 className="text-black text-xl font-extrabold md:text-xl lg:text-2xl leading-relaxed text-center">
             Esse projeto é apoiado pelo Ministerio da Cultura e pela Secretaria
             Cultura{" "}
             <span className="block mt-2">
