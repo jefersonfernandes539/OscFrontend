@@ -1,6 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+import { supabase } from "@/lib/supabaseClient";
+import { OngLocation } from "../types/ongLocation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/ui/card";
 import { Input } from "@/ui/input";
 import { Badge } from "@/ui/badge";
@@ -12,11 +15,8 @@ import {
   SelectValue,
 } from "@/ui/select";
 import { MapPin, Search, Phone, Mail } from "lucide-react";
-import dynamic from "next/dynamic";
-import { OngLocation } from "../types/ongLocation";
-import API from "@/services/api";
+import CadastroOngPage from "./components/form";
 
-// Importação dinâmica do mapa
 const MapCard = dynamic(() => import("../map/components/index"), {
   ssr: false,
 });
@@ -34,38 +34,40 @@ const serviceTypes: string[] = [
 export default function MapaPage() {
   const [ongs, setOngs] = useState<OngLocation[]>([]);
   const [selectedOng, setSelectedOng] = useState<OngLocation | null>(null);
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  const [selectedType, setSelectedType] = useState<string>("Todos");
-  const [loading, setLoading] = useState<boolean>(true);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedType, setSelectedType] = useState("Todos");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchOngs = async () => {
-      try {
-        const response = await API.get("/api/onglocation");
-        console.log("ONGs recebidas:", response.data);
-        setOngs(response.data ?? []);
-      } catch (error) {
+      setLoading(true);
+      const { data, error } = await supabase
+        .from("OngLocation")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) {
         console.error("Erro ao buscar ONGs:", error);
-      } finally {
-        setLoading(false);
+      } else {
+        console.log("ONGs recebidas:", data);
+        setOngs(data ?? []);
       }
+      setLoading(false);
     };
 
     fetchOngs();
   }, []);
 
-  const filteredOngs = Array.isArray(ongs)
-    ? ongs.filter((ong) => {
-        const matchesSearch =
-          ong?.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          ong?.description?.toLowerCase().includes(searchTerm.toLowerCase());
-        const matchesType =
-          selectedType === "Todos" || ong?.type === selectedType;
-        return matchesSearch && matchesType;
-      })
-    : [];
+  // 🔹 Filtro local
+  const filteredOngs = ongs.filter((ong) => {
+    const matchesSearch =
+      ong.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      ong.description?.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesType = selectedType === "Todos" || ong.type === selectedType;
+    return matchesSearch && matchesType;
+  });
 
-  const getServiceColor = (type: string): string => {
+  const getServiceColor = (type: string) => {
     switch (type) {
       case "Alimentação":
         return "bg-orange-500";
@@ -80,10 +82,12 @@ export default function MapaPage() {
     }
   };
 
+  // 🔹 Renderização
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Coluna lateral */}
           <div className="lg:col-span-1 space-y-4">
             <Card>
               <CardHeader>
@@ -120,10 +124,10 @@ export default function MapaPage() {
                 {filteredOngs.map((ong) => (
                   <Card
                     key={ong.id}
-                    className={`cursor-pointer transition-all hover:shadow-md ${
+                    onClick={() => setSelectedOng(ong)}
+                    className={`cursor-pointer hover:shadow-md transition-all ${
                       selectedOng?.id === ong.id ? "ring-2 ring-[#ffc449]" : ""
                     }`}
-                    onClick={() => setSelectedOng(ong)}
                   >
                     <CardContent className="p-4">
                       <div className="flex items-start justify-between mb-2">
@@ -136,20 +140,11 @@ export default function MapaPage() {
                         {ong.address}
                       </p>
                       <div className="flex flex-wrap gap-1">
-                        {ong.services.slice(0, 2).map((service: string) => (
-                          <Badge
-                            key={service}
-                            variant="outline"
-                            className="text-xs"
-                          >
-                            {service}
+                        {ong.services.slice(0, 2).map((s) => (
+                          <Badge key={s} variant="outline" className="text-xs">
+                            {s}
                           </Badge>
                         ))}
-                        {ong.services.length > 2 && (
-                          <Badge variant="outline" className="text-xs">
-                            +{ong.services.length - 2}
-                          </Badge>
-                        )}
                       </div>
                     </CardContent>
                   </Card>
@@ -158,35 +153,28 @@ export default function MapaPage() {
             )}
           </div>
 
+          {/* Mapa e detalhes */}
           <div className="lg:col-span-2">
             <CardContent>
               <MapCard
                 filteredOngs={filteredOngs}
                 setSelectedOng={setSelectedOng}
               />
-
               {selectedOng && (
                 <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
-                  <div className="flex items-start justify-between mb-3">
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900">
-                        {selectedOng.name}
-                      </h3>
-                      <Badge
-                        className={`${getServiceColor(
-                          selectedOng.type
-                        )} text-white`}
-                      >
-                        {selectedOng.type}
-                      </Badge>
-                    </div>
-                  </div>
-
-                  <p className="text-gray-700 mb-4">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                    {selectedOng.name}
+                  </h3>
+                  <Badge
+                    className={`${getServiceColor(selectedOng.type)} text-white`}
+                  >
+                    {selectedOng.type}
+                  </Badge>
+                  <p className="mt-3 text-gray-700">
                     {selectedOng.description}
                   </p>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                  <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
                     <div className="flex items-center gap-2">
                       <MapPin className="h-4 w-4 text-gray-500" />
                       <span>{selectedOng.address}</span>
@@ -200,20 +188,12 @@ export default function MapaPage() {
                       <span>{selectedOng.email}</span>
                     </div>
                   </div>
-
-                  <div className="mt-4">
-                    <h4 className="font-medium mb-2">Serviços Oferecidos:</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {selectedOng.services.map((service: string) => (
-                        <Badge key={service} variant="outline">
-                          {service}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
                 </div>
               )}
             </CardContent>
+            <div className="flex justify-center">
+              <CadastroOngPage />
+            </div>
           </div>
         </div>
       </div>
