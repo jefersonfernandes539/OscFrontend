@@ -3,9 +3,9 @@ import { motion, LayoutGroup } from "framer-motion";
 export function History() {
   return (
     <section className="py-16 lg:py-24 bg-white">
-      <div className="container px-4 md:px-6">
+      <div className="relative flex justify-center px-4 md:px-6">
         <LayoutGroup>
-          <div className="grid lg:grid-cols-1 gap-12 lg:gap-16 items-center">
+          <div className="w-full max-w-4xl">
             <motion.div
               className="space-y-6"
               initial={{ opacity: 0, y: 50 }}

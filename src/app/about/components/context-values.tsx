@@ -6,8 +6,8 @@ import { Heart, Quote, Target, Users } from "lucide-react";
 export default function ContextValue() {
   return (
     <section className="py-16 lg:py-24">
-      <div className="container px-4 md:px-6">
-        <div className="max-w-6xl mx-auto">
+      <div className="relative flex justify-center px-4 md:px-6">
+        <div className="w-full max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#ff605f]">
               Nosso Contexto de Atuação

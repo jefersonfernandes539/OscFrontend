@@ -15,7 +15,7 @@ import {
   SelectValue,
 } from "@/ui/select";
 import { MapPin, Search, Phone, Mail } from "lucide-react";
-import CadastroOngPage from "./components/form";
+// import CadastroOngPage from "./components/form";
 
 const MapCard = dynamic(() => import("../map/components/index"), {
   ssr: false,
@@ -153,7 +153,6 @@ export default function MapaPage() {
             )}
           </div>
 
-          {/* Mapa e detalhes */}
           <div className="lg:col-span-2">
             <CardContent>
               <MapCard
@@ -191,9 +190,9 @@ export default function MapaPage() {
                 </div>
               )}
             </CardContent>
-            <div className="flex justify-center">
+            {/* <div className="flex justify-center">
               <CadastroOngPage />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
